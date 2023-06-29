@@ -6,11 +6,20 @@ public static class UnitMapper
 {
   public const string DegreeSymbol = "°"; // NIST does not require a space for angles
 
-  public static Unit MapUnit(this string s) => s switch
+  public static Unit MapUnit(this string s) => s.Trim() switch
   {
     "mm" => Unit.Millimeter,
     "cm" => Unit.Centimeter,
     "m" => Unit.Meter,
+    "m/s" => Unit.MetersPerSecond,
+    "mi" => Unit.Mile,
+    "mi/h" => Unit.MilesPerHour,
+    "km" => Unit.Kilometer,
+    "km/h" => Unit.KilometersPerHour,
+    "min/mi" => Unit.MinutesPerMile,
+    "/mi" => Unit.MinutesPerMile,
+    "min/km" => Unit.MinutesPerKilometer,
+    "/km" => Unit.MinutesPerKilometer,
 
     "°" => Unit.Degree,
     "deg" => Unit.Degree,
@@ -26,6 +35,13 @@ public static class UnitMapper
     Unit.Millimeter => " mm",
     Unit.Centimeter => " cm",
     Unit.Meter => " m",
+    Unit.MetersPerSecond => " m/s",
+    Unit.Mile => " mi",
+    Unit.Kilometer => " km",
+    Unit.MilesPerHour => " mi/h",
+    Unit.KilometersPerHour => " km/h",
+    Unit.MinutesPerMile => " min/mi",
+    Unit.MinutesPerKilometer => " min/km",
 
     Unit.Degree => DegreeSymbol,
     Unit.Radian => " rad",

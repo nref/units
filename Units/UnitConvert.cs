@@ -38,6 +38,8 @@ public static class UnitConvert
   /// </summary>
   public static Func<double, double> Convert(Unit from, Unit to) => to switch
   {
+    _ when to == from => value => value,
+
     Unit.Hz when from == Unit.Second => inverse_,
     Unit.Second when from == Unit.Hz => inverse_,
 
@@ -45,7 +47,12 @@ public static class UnitConvert
     Unit.Hz when from == Unit.Millisecond => value => inverse_(value * Ratio(Unit.Millisecond, Unit.Second)),
     // Hz => Second => Millisecond
     Unit.Millisecond when from == Unit.Hz => value => inverse_(value) * Ratio(Unit.Second, Unit.Millisecond),
-    
+   
+    _ when from == Unit.MinutesPerMile => value => inverse_(value) * Ratio(from, to),
+    _ when from == Unit.MinutesPerKilometer => value => inverse_(value) * Ratio(from, to),
+    Unit.MinutesPerMile => value => inverse_(value) * Ratio(from, to),
+    Unit.MinutesPerKilometer => value => inverse_(value) * Ratio(from, to),
+
     // The conversion can be done without knowledge of the value
     _ => value => value * Ratio(from, to)
   };
@@ -56,6 +63,31 @@ public static class UnitConvert
   /// </summary>
   public static double Ratio(Unit from, Unit to) => to switch
   {
+    Unit.MetersPerSecond when from == Unit.MetersPerSecond => 1,
+    Unit.MilesPerHour when from == Unit.MilesPerHour => 1,
+    Unit.KilometersPerHour when from == Unit.KilometersPerHour => 1,
+    Unit.MinutesPerMile when from == Unit.MinutesPerMile => 1,
+    Unit.MinutesPerKilometer when from == Unit.MinutesPerKilometer => 1,
+
+    Unit.MetersPerSecond when from == Unit.MilesPerHour => 0.44704,
+    Unit.MetersPerSecond when from == Unit.KilometersPerHour => 0.27777778,
+    Unit.MetersPerSecond when from == Unit.MinutesPerMile => 26.8224,
+    Unit.MetersPerSecond when from == Unit.MinutesPerKilometer => 16.6666667,
+
+    Unit.MilesPerHour when from == Unit.MetersPerSecond => 2.2369362920544,
+    Unit.KilometersPerHour when from == Unit.MetersPerSecond => 3.6,
+    Unit.MinutesPerMile when from == Unit.MetersPerSecond => 0.3728227153424,
+    Unit.MinutesPerKilometer when from == Unit.MetersPerSecond => 0.06,
+
+    Unit.Meter when from == Unit.Kilometer => Ratio(SiPrefix.Kilo, SiPrefix.None),
+    Unit.Kilometer when from == Unit.Meter => Ratio(SiPrefix.None, SiPrefix.Kilo),
+
+    Unit.Meter when from == Unit.Mile => 1609.344,
+    Unit.Mile when from == Unit.Meter => 0.0006213712,
+
+    Unit.Kilometer when from == Unit.Mile => 1.609344,
+    Unit.Mile when from == Unit.Kilometer => 0.6213712,
+
     Unit.Millimeter when from == Unit.Millimeter => Ratio(SiPrefix.Milli, SiPrefix.Milli),
     Unit.Millimeter when from == Unit.Centimeter => Ratio(SiPrefix.Centi, SiPrefix.Milli),
     Unit.Millimeter when from == Unit.Meter => Ratio(SiPrefix.None, SiPrefix.Milli),

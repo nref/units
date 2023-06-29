@@ -13,4 +13,19 @@ public enum Unit
   Hz,
   Second,
   Millisecond,
+
+  Mile,
+  Kilometer,
+
+  // Compound units
+
+  // dist / time
+  MetersPerSecond,
+  MilesPerHour,
+  KilometersPerHour,
+
+  // time / dist
+  MinutesPerMile,
+  MinutesPerKilometer,
+
 }
