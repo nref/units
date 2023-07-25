@@ -1,6 +1,6 @@
 ## Units
 
-A simple library for sharing physical quantities. Emphasis on simple. For something more involved, try [UnitsNet]([url](https://github.com/angularsen/UnitsNet)).
+A simple library for sharing physical quantities. Emphasis on simple. For something more involved, try [UnitsNet](https://github.com/angularsen/UnitsNet).
 
 A `Quantity` has a `Value` and a `Unit`.
 
