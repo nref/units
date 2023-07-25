@@ -1,6 +1,8 @@
 ## Units
 
-A common library for sharing physical quantities. A `Quantity` has a `Value` and a `Unit`.
+A simple library for sharing physical quantities. Emphasis on simple. For something more involved, try [UnitsNet]([url](https://github.com/angularsen/UnitsNet)).
+
+A `Quantity` has a `Value` and a `Unit`.
 
     A physical quantity is a property of a material or system that can be quantified by measurement. A physical quantity can be expressed as the combination of a numerical value and a unit. For example, the physical quantity mass can be quantified as n kg, where n is the numerical value and kg is the unit. A physical quantity possesses at least two characteristics in common, one is numerical magnitude and other is the unit in which it is measured.
 
