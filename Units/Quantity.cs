@@ -86,10 +86,10 @@ public struct Quantity : IEquatable<Quantity>, IComparable<Quantity>, IComparabl
     return hashCode;
   }
 
-  public override bool Equals(object other) => Equals((Quantity)other);
+  public override bool Equals(object? other) => other is Quantity q && Equals(q);
 
   public bool Equals(Quantity other) => Equals(other, this);
-  public int CompareTo(object other) => CompareTo((Quantity)other);
+  public int CompareTo(object? other) => other is Quantity q ? CompareTo(q) : -1;
 
   public int CompareTo(Quantity other)
   {
