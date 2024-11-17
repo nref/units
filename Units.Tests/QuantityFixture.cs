@@ -239,7 +239,7 @@ public class QuantityFixture
   public void Mllimeter_ToString_Correct() => Assert.AreEqual("1 mm", $"{new Quantity(1, Unit.Millimeter)}");
 
   [Test]
-  public void Degree_ToString_Correct() => Assert.AreEqual("1 deg", $"{new Quantity(1, Unit.Degree)}");
+  public void Degree_ToString_Correct() => Assert.AreEqual("1°", $"{new Quantity(1, Unit.Degree)}");
 
   [Test]
   public void Radian_ToString_Correct() => Assert.AreEqual("1 rad", $"{new Quantity(1, Unit.Radian)}");
